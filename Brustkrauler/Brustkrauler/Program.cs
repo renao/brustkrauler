@@ -1,7 +1,13 @@
 ﻿using Brustkrauler.Crawlers;
+using Brustkrauler.Notifiers;
 using Brustkrauler.Store;
 
+var telegramToken = args[0];
+
 var store = new LastCrawlContentStore();
+var telegram = new TelegramNotifier(telegramToken);
+
+await telegram.SendChangeInfos("http://google.com");
 
 var pageCrawlers = new List<Crawler>
 {
