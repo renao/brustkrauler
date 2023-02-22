@@ -2,7 +2,7 @@
 using Brustkrauler.Notifiers;
 using Brustkrauler.Store;
 
-var telegramToken = args[0];
+var telegramToken = args[0] ?? "";
 
 var store = new LastCrawlContentStore();
 var telegram = new TelegramNotifier(telegramToken);
@@ -24,3 +24,5 @@ foreach (var crawler in pageCrawlers)
         await telegram.SendChangeInfosAsync(crawler.PageUrl);
     }
 }
+
+Console.ReadKey();
