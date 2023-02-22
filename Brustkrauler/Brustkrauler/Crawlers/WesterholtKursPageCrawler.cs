@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HtmlAgilityPack;
 
 namespace Brustkrauler.Crawlers
 {
@@ -13,7 +14,9 @@ namespace Brustkrauler.Crawlers
 
         public override string FetchContent()
         {
-            return string.Empty;
+            var htmlDoc = new HtmlWeb().Load(PageUrl);
+            var contentNode = htmlDoc.DocumentNode.SelectSingleNode("//form[@id='form_bookings-block_list_table']");
+            return contentNode.InnerHtml;
         }
     }
 }

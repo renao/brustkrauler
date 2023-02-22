@@ -1,4 +1,6 @@
-﻿namespace Brustkrauler.Crawlers
+﻿using HtmlAgilityPack;
+
+namespace Brustkrauler.Crawlers
 {
     internal class CopaKursPageCrawler : Crawler
     {
@@ -7,7 +9,9 @@
 
         public override string FetchContent()
         {
-            return string.Empty;
+            var htmlDoc = new HtmlWeb().Load(PageUrl);
+            var contentNode = htmlDoc.DocumentNode.SelectSingleNode("//form[@id='form_bookings-block_list_table']");
+            return contentNode.InnerHtml;
         }
     }
 }
