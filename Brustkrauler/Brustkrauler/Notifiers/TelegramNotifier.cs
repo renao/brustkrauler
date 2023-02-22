@@ -17,10 +17,10 @@ namespace Brustkrauler.Notifiers
             _bot = new TelegramBotClient(apiToken);
         }
 
-        public async Task SendChangeInfos(string pageUrl)
+        public async Task SendChangeInfosAsync(string pageUrl)
         {
             await _bot.SendTextMessageAsync(
-                "@renao",
+                "@renao2000",
                 "Update empfangen",
                 Telegram.Bot.Types.Enums.ParseMode.Html);
 

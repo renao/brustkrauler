@@ -2,12 +2,10 @@
 using Brustkrauler.Notifiers;
 using Brustkrauler.Store;
 
-var telegramToken = ""; //args[0];
+var telegramToken = args[0];
 
 var store = new LastCrawlContentStore();
 var telegram = new TelegramNotifier(telegramToken);
-
-// await telegram.SendChangeInfos("http://google.com");
 
 var pageCrawlers = new List<Crawler>
 {
@@ -23,7 +21,6 @@ foreach (var crawler in pageCrawlers)
 
     if (hasChanged)
     {
-        Console.WriteLine($"Alarm! {crawler} => Changed!");
-        Console.WriteLine($"See Changes => {crawler.PageUrl}");
+        await telegram.SendChangeInfosAsync(crawler.PageUrl);
     }
 }

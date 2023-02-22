@@ -15,6 +15,7 @@ namespace Brustkrauler.Crawlers
         public override string FetchContent()
         {
             var htmlDoc = new HtmlWeb().Load(PageUrl);
+            // Alternativ: tbody nur für die Ergebnisse
             var contentNode = htmlDoc.DocumentNode.SelectSingleNode("//form[@id='form_bookings-block_list_table']");
             return contentNode.InnerHtml;
         }
