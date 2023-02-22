@@ -1,0 +1,17 @@
+C:\Entwicklung\private\brustkrauler\Brustkrauler\Brustkrauler\bin\Debug\net6.0\Brustkrauler.exe
+C:\Entwicklung\private\brustkrauler\Brustkrauler\Brustkrauler\bin\Debug\net6.0\Brustkrauler.deps.json
+C:\Entwicklung\private\brustkrauler\Brustkrauler\Brustkrauler\bin\Debug\net6.0\Brustkrauler.runtimeconfig.json
+C:\Entwicklung\private\brustkrauler\Brustkrauler\Brustkrauler\bin\Debug\net6.0\Brustkrauler.dll
+C:\Entwicklung\private\brustkrauler\Brustkrauler\Brustkrauler\bin\Debug\net6.0\Brustkrauler.pdb
+C:\Entwicklung\private\brustkrauler\Brustkrauler\Brustkrauler\bin\Debug\net6.0\HtmlAgilityPack.dll
+C:\Entwicklung\private\brustkrauler\Brustkrauler\Brustkrauler\obj\Debug\net6.0\Brustkrauler.csproj.AssemblyReference.cache
+C:\Entwicklung\private\brustkrauler\Brustkrauler\Brustkrauler\obj\Debug\net6.0\Brustkrauler.GeneratedMSBuildEditorConfig.editorconfig
+C:\Entwicklung\private\brustkrauler\Brustkrauler\Brustkrauler\obj\Debug\net6.0\Brustkrauler.AssemblyInfoInputs.cache
+C:\Entwicklung\private\brustkrauler\Brustkrauler\Brustkrauler\obj\Debug\net6.0\Brustkrauler.AssemblyInfo.cs
+C:\Entwicklung\private\brustkrauler\Brustkrauler\Brustkrauler\obj\Debug\net6.0\Brustkrauler.csproj.CoreCompileInputs.cache
+C:\Entwicklung\private\brustkrauler\Brustkrauler\Brustkrauler\obj\Debug\net6.0\Brustkrauler.csproj.CopyComplete
+C:\Entwicklung\private\brustkrauler\Brustkrauler\Brustkrauler\obj\Debug\net6.0\Brustkrauler.dll
+C:\Entwicklung\private\brustkrauler\Brustkrauler\Brustkrauler\obj\Debug\net6.0\refint\Brustkrauler.dll
+C:\Entwicklung\private\brustkrauler\Brustkrauler\Brustkrauler\obj\Debug\net6.0\Brustkrauler.pdb
+C:\Entwicklung\private\brustkrauler\Brustkrauler\Brustkrauler\obj\Debug\net6.0\Brustkrauler.genruntimeconfig.cache
+C:\Entwicklung\private\brustkrauler\Brustkrauler\Brustkrauler\obj\Debug\net6.0\ref\Brustkrauler.dll
