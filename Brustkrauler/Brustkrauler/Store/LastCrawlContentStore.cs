@@ -2,9 +2,16 @@
 {
     internal class LastCrawlContentStore
     {
+
+        private string _basePath;
+        public LastCrawlContentStore(string basePath)
+        {
+            _basePath = basePath;
+        }
+        
         public bool StoreWhenSomethingChanged(string crawlersName, string content)
         {
-            var contentFile = FileName(crawlersName);
+            var contentFile = Path.Combine(_basePath, FileName(crawlersName));
             var savedContent
                 = File.Exists(contentFile)
                 ? File.ReadAllText(contentFile)
