@@ -1,51 +1,42 @@
-﻿using System.Collections.Immutable;
+﻿using Brustkrauler.Config;
 using Brustkrauler.Crawlers;
 using Brustkrauler.Notifiers;
 using Brustkrauler.Store;
+using Newtonsoft.Json;
 
-var scriptPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-var botConfigPath = Path.Combine(
-    scriptPath,
-    "TelegramBotToken.txt");
-if (!File.Exists(botConfigPath))
+var scriptPath 
+    = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) 
+      ?? string.Empty;
+
+var configFilePath = Path.Combine(scriptPath, "crawler.json");
+
+if (!File.Exists(configFilePath))
 {
-    Console.WriteLine($"ERROR: Missing TelegramBotToken.txt with Telegram Bot Access Token at {botConfigPath}");
-    return 2;
-}
+    Console.Error.WriteLine("ERROR: No config file provided");
+} 
 
-var subscribersPath = Path.Combine(
-    scriptPath,
-    "Subscribers.txt");
-if (!File.Exists(subscribersPath))
-{
-    Console.WriteLine($"ERROR: Missing Subscribers.txt with Telegram Chat IDs at {subscribersPath}");
-    return 2;
-}
+var configFileContent = File.ReadAllText(configFilePath);
+var config = JsonConvert.DeserializeObject<CrawlerConfig>(configFileContent);
 
-var telegramBotToken = File.ReadAllText(botConfigPath);
-var subscriberChatIds = File.ReadLines(subscribersPath).Select(long.Parse).ToArray();
 var store = new LastCrawlContentStore(scriptPath);
-var telegram = new TelegramNotifier(telegramBotToken, subscriberChatIds);
+var telegram = new TelegramNotifier(
+    config.Telegram.AccessToken,
+    config.Telegram.SubscriberChatIds);
 
-var pageCrawlers = new List<Crawler>
+foreach (var page in config.Pages)
 {
-    new SchwimmkursePageCrawler(),
-    new CopaKursPageCrawler(),
-    new WesterholtKursPageCrawler()
-};
-
-foreach (var crawler in pageCrawlers)
-{
+    var crawler = new Crawler(page.Url, page.XPath);
     var content = crawler.FetchContent();
-    var hasChanged = store.StoreWhenSomethingChanged(crawler.GetType().Name, content);
+    
+    var hasChanged = store.StoreWhenSomethingChanged(page.Name, content);
 
     if (hasChanged)
     {
-        await telegram.SendChangeInfosAsync(crawler.PageUrl);
+        await telegram.SendChangeInfosAsync(page);
     }
     else
     {
-        Console.WriteLine($"[{DateTime.Now}] No changes on {crawler.PageUrl}");
+        Console.WriteLine($"[{DateTime.Now}] No changes on {page.Name}");
     }
 }
 

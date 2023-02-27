@@ -1,0 +1,17 @@
+{
+  "pages": [
+    {
+      "name": "The name of the page",
+      "url": "https://page.url/site.html",
+      "xpath": "//contentXPath[@id='c7772']"
+    },
+
+    // More Pages here.
+  ],
+  "telegram": {
+    "accessToken": "TelegramBotAccessToken",
+    "subscriberChatIds": [
+      Telegram Chat IDs of your subscribers (long)
+    ]
+  }
+}

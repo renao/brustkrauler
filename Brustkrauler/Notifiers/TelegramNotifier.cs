@@ -1,4 +1,6 @@
-﻿using Telegram.Bot;
+﻿using Brustkrauler.Config;
+using Telegram.Bot;
+using Telegram.Bot.Types.Enums;
 
 namespace Brustkrauler.Notifiers
 {
@@ -13,15 +15,20 @@ namespace Brustkrauler.Notifiers
             _subscriberChatIds = subscriberChatIds;
         }
 
-        public async Task SendChangeInfosAsync(string pageUrl)
+        public async Task SendChangeInfosAsync(PageConfig page)
         {
             foreach (var chatId in _subscriberChatIds)
             {
                 await _bot.SendTextMessageAsync(
                     chatId,
-                    $"Aktualisierung festgestellt!" +
+                    $"<strong>Änderung festgestellt</strong>" +
                     $"{Environment.NewLine}" +
-                    $"{pageUrl}");
+                    $"{Environment.NewLine}" +
+                    $"{page.Name}" +
+                    $"{Environment.NewLine}" +
+                    $"{Environment.NewLine}" +
+                    $"{page.Url}",
+                    ParseMode.Html);
             }
         }
     }

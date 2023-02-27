@@ -1,20 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using HtmlAgilityPack;
 
 namespace Brustkrauler.Crawlers
 {
-    internal abstract class Crawler
+    internal class Crawler
     {
-        public abstract string PageUrl { get; }
+        public string PageUrl { get; }
+        private string ContentXPath { get; }
+
+        public Crawler(string pageUrl, string contentXPath)
+        {
+            this.PageUrl = pageUrl;
+            this.ContentXPath = contentXPath;
+        }
         
         /// <summary>
-        /// The Content to keep track of
+        /// Fetches the content from the provided url via the XPath
         /// </summary>
         /// <returns></returns>
-        public abstract string FetchContent();
+        public virtual string FetchContent()
+        {
+            var htmlDoc = new HtmlWeb().Load(PageUrl);
+            var contentNode = htmlDoc.DocumentNode.SelectSingleNode(ContentXPath);
+            return contentNode.InnerHtml;
+        }
 
     }
 }
